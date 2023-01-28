@@ -15,15 +15,15 @@ class Fila extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              height: 200,
-              width: 200,
+              height: 250,
+              width: 250,
+              // color: Colors.lightGreen,
               child: Column(
                 children: [
                   SizedBox(
-                    height: 150,
-                    width: 150,
-                    child: Image.network(
-                        'https://imagepng.org/wp-content/uploads/2017/11/telegram-icone-icon.png'),
+                    height: 200,
+                    width: 200,
+                    child: Image.asset('images/produto6.png'),
                   ),
                   Divider(
                     height: 20,
@@ -38,7 +38,7 @@ class Fila extends StatelessWidget {
                       Icon(
                         Icons.favorite,
                         color: Colors.red,
-                      )
+                      ),
                     ],
                   )
                 ],
@@ -48,9 +48,41 @@ class Fila extends StatelessWidget {
               width: 10,
             ),
             Container(
-              height: 200,
-              width: 200,
-              color: Colors.amber,
+              height: 250,
+              width: 250,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(25)),
+                color: Color.fromARGB(255, 223, 228, 228),
+              ),
+              // color: Colors.lightGreen,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 200,
+                    width: 200,
+                    child: Image.asset('images/produto6.png'),
+                  ),
+                  Divider(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          title,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        Icon(
+                          Icons.favorite,
+                          color: Colors.red,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
             SizedBox(
               width: 10,
