@@ -27,7 +27,9 @@ class _HomePageState extends State<HomePage> {
             color: Colors.amberAccent,
             child: Center(child: Text('s')),
           ),
-          Fila(),
+          Fila(
+            title: 'Nome',
+          ),
         ],
       ),
     );

@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 
 class Fila extends StatelessWidget {
-  const Fila({Key? key}) : super(key: key);
+  final String title;
+  const Fila({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class Fila extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'data',
+                        title,
                         style: TextStyle(fontSize: 16),
                       ),
                       Icon(
