@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:pokedex/controllers/pokedex_controller.dart';
@@ -32,23 +32,49 @@ class _GrelhaState extends State<Grelha> {
           // direction: Axis.horizontal,
           spacing: 12,
           runSpacing: 10,
-          children: List.generate(8, (index) {
+          children: List.generate(12, (index) {
             return Container(
               width: 190,
               height: 190,
-              color: Color.fromARGB(255, 206, 199, 199),
+              // color: Color.fromARGB(255, 206, 199, 199),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(25)),
+                color: Color.fromARGB(255, 223, 228, 228),
+              ),
               child: Column(
                 children: [
                   SizedBox(
-                    height: 170,
-                    width: 170,
+                    height: 160,
+                    width: 160,
                     child: Image.asset(
-                      'images/produto6.png',
+                      'images/ivysaur.png',
                     ),
                   ),
-                  Text(
-                    'ss',
-                    style: TextStyle(color: Colors.white),
+                  // Text(
+                  //   'ss',
+                  //   style: TextStyle(
+                  //     color: Colors.white,
+                  //   ),
+                  // ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15,
+                      right: 15,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Ivysaur',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                        Icon(
+                          Icons.favorite,
+                          color: Colors.red,
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),
