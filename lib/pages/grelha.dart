@@ -50,12 +50,6 @@ class _GrelhaState extends State<Grelha> {
                       'images/ivysaur.png',
                     ),
                   ),
-                  // Text(
-                  //   'ss',
-                  //   style: TextStyle(
-                  //     color: Colors.white,
-                  //   ),
-                  // ),
                   Padding(
                     padding: const EdgeInsets.only(
                       left: 15,
