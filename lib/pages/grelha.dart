@@ -1,43 +1,59 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
-class Grelha extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:pokedex/controllers/pokedex_controller.dart';
+import 'package:pokedex/models/pokedex.dart';
+
+class Grelha extends StatefulWidget {
   const Grelha({Key? key}) : super(key: key);
 
   @override
+  State<Grelha> createState() => _GrelhaState();
+}
+
+class _GrelhaState extends State<Grelha> {
+  PokedexController _pokedexController = PokedexController();
+
+  late Future<List<Pokedex>> pokedexs;
+  @override
+  void initState() {
+    super.initState();
+    pokedexs = _pokedexController.getAll();
+    // print(pokedexs);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(20),
-      child: Wrap(
-        direction: Axis.vertical,
-        spacing: 32,
-        runSpacing: 16,
-        children: [
-          Container(
-            width: 200,
-            height: 200,
-            color: Colors.black,
-          ),
-          Container(
-            width: 200,
-            height: 200,
-            color: Colors.red,
-          ),
-          Container(
-            width: 200,
-            height: 200,
-            color: Colors.black,
-          ),
-          Container(
-            width: 200,
-            height: 200,
-            color: Colors.black,
-          ),
-          Container(
-            width: 200,
-            height: 200,
-            color: Colors.black,
-          ),
-        ],
+    return SingleChildScrollView(
+      // scrollDirection: Axis.horizontal,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Wrap(
+          spacing: 12,
+          runSpacing: 10,
+          children: List.generate(12, (index) {
+            return Container(
+              width: 190,
+              height: 190,
+              color: Colors.red,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 170,
+                    width: 170,
+                    child: Image.asset(
+                      'images/produto6.png',
+                    ),
+                  ),
+                  Text(
+                    'ss',
+                    style: TextStyle(color: Colors.white),
+                  )
+                ],
+              ),
+            );
+          }),
+        ),
       ),
     );
   }

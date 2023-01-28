@@ -17,64 +17,91 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // ignore: prefer_final_fields
-  PokedexController _pokedexController = PokedexController();
+  // PokedexController _pokedexController = PokedexController();
 
-  late Future<List<Pokedex>> pokedexs;
-  @override
-  void initState() {
-    super.initState();
-    pokedexs = _pokedexController.getAll();
-    print(pokedexs);
-  }
+  // late Future<List<Pokedex>> pokedexs;
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   pokedexs = _pokedexController.getAll();
+  //   print(pokedexs);
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Pokedex'),
-      //   backgroundColor: Colors.red,
-      // ),
-      body: Column(
-        children: [
-          Container(
-            height: 120,
-            color: Colors.amberAccent,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.white,
-                  ),
-                  Text(
-                    'Pokedex App',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Icon(Icons.logout)
-                ],
-              ),
-            ),
-          ),
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Produtos Populares'),
-                  Icon(Icons.g_translate),
-                ],
-              ),
-            ),
-          ),
-          Fila(
-            title: 'Nome',
-          ),
-          ListTile(
-            title: Text('Marino Ricardo'),
-          ),
-        ],
+      appBar: AppBar(
+        title: Text('Pokedex'),
+        backgroundColor: Colors.red,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Container(
+            //   height: 120,
+            //   color: Colors.pink,
+            //   child: Padding(
+            //     padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       children: [
+            //         SizedBox(
+            //           height: 40,
+            //           width: 40,
+            //           child: CircleAvatar(
+            //             backgroundColor: Colors.white,
+            //           ),
+            //         ),
+            //         Text(
+            //           'Pokedex App',
+            //           style: TextStyle(fontSize: 20, color: Colors.white),
+            //         ),
+            //         Icon(
+            //           Icons.logout,
+            //           size: 30,
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // Container(
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(10.0),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       children: [
+            //         Text('Produtos Populares'),
+            //         Icon(Icons.g_translate),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // Fila(
+            //   title: 'Nome',
+            // ),
+            Grelha(),
+            // ListTile(
+            //   title: Text('Marino Ricardo'),
+            //   subtitle: Text('marinoricardo814@gmail.com'),
+            //   leading: CircleAvatar(
+            //     backgroundColor: Colors.pink,
+            //     child: Text('MR'),
+            //   ),
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.all(10.0),
+            //   child: SizedBox(
+            //     height: 300,
+            //     width: 200,
+            //     child: Image.asset('images/produto6.png'),
+            //   ),
+            // ),
+            // Fila(title: 'title'),
+            // Fila(title: 'title'),
+            // Fila(title: 'title'),
+            // Fila(title: 'title'),
+          ],
+        ),
       ),
     );
   }
