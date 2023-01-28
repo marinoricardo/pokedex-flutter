@@ -29,13 +29,14 @@ class _GrelhaState extends State<Grelha> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Wrap(
+          // direction: Axis.horizontal,
           spacing: 12,
           runSpacing: 10,
-          children: List.generate(12, (index) {
+          children: List.generate(8, (index) {
             return Container(
               width: 190,
               height: 190,
-              color: Colors.red,
+              color: Color.fromARGB(255, 206, 199, 199),
               child: Column(
                 children: [
                   SizedBox(
