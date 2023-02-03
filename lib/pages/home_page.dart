@@ -1,12 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, sized_box_for_whitespace, unused_field
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, sized_box_for_whitespace, unused_field, prefer_final_fields, unused_local_variable
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:pokedex/controllers/pokedex_controller.dart';
-import 'package:pokedex/models/pokedex.dart';
-import 'package:pokedex/pages/fila.dart';
-import 'package:pokedex/pages/grelha.dart';
+
+import '../controllers/pokedex_controller.dart';
+import '../models/pokedex.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,92 +13,79 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // ignore: prefer_final_fields
-  // PokedexController _pokedexController = PokedexController();
-
-  // late Future<List<Pokedex>> pokedexs;
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   pokedexs = _pokedexController.getAll();
-  //   print(pokedexs);
-  // }
+  PokedexController _pokedexController = PokedexController();
+  late Future<List<Pokedex>> pokedexs;
+  @override
+  void initState() {
+    super.initState();
+    pokedexs = _pokedexController.getAll();
+    print('object');
+    print(pokedexs);
+  }
 
   @override
   Widget build(BuildContext context) {
+    Future<List<Pokedex>> dados = pokedexs;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pokedex'),
+        title: Center(child: Text('Pokedex')),
         backgroundColor: Colors.red,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Container(
-            //   height: 120,
-            //   color: Colors.pink,
-            //   child: Padding(
-            //     padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       children: [
-            //         SizedBox(
-            //           height: 40,
-            //           width: 40,
-            //           child: CircleAvatar(
-            //             backgroundColor: Colors.white,
-            //           ),
-            //         ),
-            //         Text(
-            //           'Pokedex App',
-            //           style: TextStyle(fontSize: 20, color: Colors.white),
-            //         ),
-            //         Icon(
-            //           Icons.logout,
-            //           size: 30,
-            //         )
-            //       ],
-            //     ),
-            //   ),
-            // ),
-            // Container(
-            //   child: Padding(
-            //     padding: const EdgeInsets.all(10.0),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       children: [
-            //         Text('Produtos Populares'),
-            //         Icon(Icons.g_translate),
-            //       ],
-            //     ),
-            //   ),
-            // ),
-            // Fila(
-            //   title: 'Nome',
-            // ),
-            Grelha(),
-            // ListTile(
-            //   title: Text('Marino Ricardo'),
-            //   subtitle: Text('marinoricardo814@gmail.com'),
-            //   leading: CircleAvatar(
-            //     backgroundColor: Colors.pink,
-            //     child: Text('MR'),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: EdgeInsets.all(10.0),
-            //   child: SizedBox(
-            //     height: 300,
-            //     width: 200,
-            //     child: Image.asset('images/produto6.png'),
-            //   ),
-            // ),
-            // Fila(title: 'title'),
-            // Fila(title: 'title'),
-            // Fila(title: 'title'),
-            // Fila(title: 'title'),
-          ],
-        ),
+      body: FutureBuilder<List<Pokedex>>(
+        future: pokedexs,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.75,
+                ),
+                itemCount: snapshot.data!.length,
+                itemBuilder: (BuildContext context, int index) {
+                  int identificador = index + 1;
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40),
+                      //set border radius more than 50% of height and width to make circle
+                    ),
+                    color: Color.fromARGB(255, 192, 188, 176),
+                    child: Center(
+                      // child: Text(snapshot.data![index].name!),
+                      child: Column(
+                        children: [
+                          Image.network(
+                            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${identificador}.png',
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Text(
+                            snapshot.data![index].name!.toUpperCase(),
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                });
+          } else if (snapshot.hasError) {
+            return Text(snapshot.error.toString());
+          }
+
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(
+                  height: 10,
+                ),
+                Text('Processando..'),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
